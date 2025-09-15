@@ -1,5 +1,5 @@
 // --- CONFIGURACIÓN ---
-const CSV_URL = 'URL_DE_TU_ARCHIVO.csv'; // ⚠️ Reemplaza esto con el enlace PÚBLICO a tu archivo CSV
+const CSV_URL = 'Productos-Don-Quick-Dispensario  - Hoja 1 (1).csv'; // ⚠️ Reemplaza esto con el enlace PÚBLICO a tu archivo CSV
 const WHATSAPP_NUMBER = '521XXXXXXXXXX'; // ⚠️ Reemplaza con tu número de WhatsApp (código de país + número)
 // --------------------
 
@@ -62,4 +62,5 @@ function formatoMoneda(numero) {
         style: 'currency',
         currency: 'MXN'
     });
+
 }
