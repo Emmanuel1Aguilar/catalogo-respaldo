@@ -1,5 +1,5 @@
 // --- CONFIGURACIÓN ---
-const CSV_URL = 'https://drive.google.com/uc?export=download&id=1ODIe5aPFtY1mZNt7GGmb2-wRW8BKN_f-'; // ⚠️ Reemplaza esto con el enlace PÚBLICO a tu archivo CSV
+const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRqp2ik1N-LArMAUsRpx5JfygQD_AYnz7JEaiaw4-SPEzh5fOA5OsB2qVJYQlqG0wx8V5X8VkrOIZ96/pub?output=csv'; // ⚠️ Reemplaza esto con el enlace PÚBLICO a tu archivo CSV
 const WHATSAPP_NUMBER = '+525545731973'; // ⚠️ Reemplaza con tu número de WhatsApp (código de país + número)
 // --------------------
 
@@ -64,6 +64,7 @@ function formatoMoneda(numero) {
     });
 
 }
+
 
 
 
