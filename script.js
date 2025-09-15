@@ -1,5 +1,5 @@
 // --- CONFIGURACIÓN ---
-const CSV_URL = 'https://raw.githubusercontent.com/Emmanuel1Aguilar/catalogo-respaldo/main/Productos-Don-Quick-Dispensario%20%20-%20Hoja%201%20(1).csv'; // ⚠️ Reemplaza esto con el enlace PÚBLICO a tu archivo CSV
+const CSV_URL = 'https://drive.google.com/uc?export=download&id=1ODIe5aPFtY1mZNt7GGmb2-wRW8BKN_f-'; // ⚠️ Reemplaza esto con el enlace PÚBLICO a tu archivo CSV
 const WHATSAPP_NUMBER = '+525545731973'; // ⚠️ Reemplaza con tu número de WhatsApp (código de país + número)
 // --------------------
 
@@ -64,6 +64,7 @@ function formatoMoneda(numero) {
     });
 
 }
+
 
 
 
