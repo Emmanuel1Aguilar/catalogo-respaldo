@@ -1,9 +1,10 @@
 // --- CONFIGURACIÓN ---
 const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRqp2ik1N-LArMAUsRpx5JfygQD_AYnz7JEaiaw4-SPEzh5fOA5OsB2qVJYQlqG0wx8V5X8VkrOIZ96/pub?output=csv';
-const WHATSAPP_NUMBER = '5218115607996'; // ⚠️ Reemplaza con tu número de WhatsApp
+const WHATSAPP_NUMBER = '521XXXXXXXXXX'; // ⚠️ Reemplaza con tu número de WhatsApp
 // --------------------
 
 document.addEventListener("DOMContentLoaded", () => {
+    // Estas líneas buscan los elementos en el HTML. Si el HTML no es correcto, aquí es donde falla.
     const listContainer = document.querySelector('#catalogo-completo .list');
     const loader = document.querySelector('#catalogo-completo .loader');
 
@@ -14,12 +15,11 @@ document.addEventListener("DOMContentLoaded", () => {
         complete: function(results) {
             let allProductsHTML = ''; // Creamos un string para almacenar todo el HTML
 
-            // Recorremos todos los productos para generar el HTML
             results.data.forEach(product => {
                 if (product && product.Title && product.Title.trim() !== '') {
                     
                     const imageUrl = product['Image URL'];
-                    let imageHTML = `<div class="product-image-placeholder"></div>`; // Un espacio reservado si no hay imagen
+                    let imageHTML = '';
                     if (imageUrl && imageUrl.trim() !== '') {
                         imageHTML = `<img src="${imageUrl}" alt="${product.Title}" class="product-image">`;
                     }
@@ -33,11 +33,9 @@ document.addEventListener("DOMContentLoaded", () => {
                         precioHTML = `${formatoMoneda(regularPrice)}`;
                     }
 
-                    // Preparamos el mensaje de WhatsApp, ahora incluyendo el ID
                     const mensaje = encodeURIComponent(`Hola, me interesa el producto: ${product.Title} (ID: ${product.ID})`);
                     const whatsappLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${mensaje}`;
 
-                    // Construimos la tarjeta del producto, añadiendo clases para List.js
                     allProductsHTML += `
                         <div class="product-card">
                             ${imageHTML}
@@ -50,25 +48,27 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             });
 
-            // Ocultamos el loader y añadimos todo el HTML al contenedor de una sola vez
+            // Ocultamos el loader y añadimos todo el HTML al contenedor
             loader.style.display = 'none';
             listContainer.innerHTML = allProductsHTML;
 
-            // --- INICIALIZACIÓN DE LIST.JS ---
+            // INICIALIZACIÓN DE LIST.JS
             const options = {
-                valueNames: ['product-name', 'product-id'] // Clases dentro de cada tarjeta que el buscador debe revisar
+                valueNames: ['product-name', 'product-id']
             };
 
             const productList = new List('catalogo-completo', options);
         },
         error: function(err) {
-            loader.innerHTML = `<div style="color: red; text-align: center;">Error al cargar el catálogo.</div>`;
+            // Asegurarse de que el loader exista antes de modificarlo
+            if (loader) {
+                loader.innerHTML = `<div style="color: red; text-align: center;">Error al cargar el catálogo.</div>`;
+            }
             console.error("Error al leer el CSV:", err);
         }
     });
 });
 
-// --- Función auxiliar para dar formato de moneda ---
 function formatoMoneda(numero) {
     if (isNaN(numero)) return '';
     return numero.toLocaleString('es-MX', { 
