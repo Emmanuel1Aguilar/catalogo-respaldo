@@ -1,6 +1,6 @@
 // --- CONFIGURACIÓN ---
 const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRqp2ik1N-LArMAUsRpx5JfygQD_AYnz7JEaiaw4-SPEzh5fOA5OsB2qVJYQlqG0wx8V5X8VkrOIZ96/pub?output=csv';
-const WHATSAPP_NUMBER = '521XXXXXXXXXX'; // ⚠️ Reemplaza con tu número de WhatsApp
+const WHATSAPP_NUMBER = '525545731973'; // ⚠️ Reemplaza con tu número de WhatsApp
 // --------------------
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -76,3 +76,4 @@ function formatoMoneda(numero) {
         currency: 'MXN' 
     });
 }
+
