@@ -4,7 +4,6 @@ const WHATSAPP_NUMBER = '525545731973'; // ⚠️ Reemplaza con tu número de Wh
 // --------------------
 
 document.addEventListener("DOMContentLoaded", () => {
-    // Estas líneas buscan los elementos en el HTML. Si el HTML no es correcto, aquí es donde falla.
     const listContainer = document.querySelector('#catalogo-completo .list');
     const loader = document.querySelector('#catalogo-completo .loader');
 
@@ -13,15 +12,23 @@ document.addEventListener("DOMContentLoaded", () => {
         header: true,
         skipEmptyLines: true,
         complete: function(results) {
-            let allProductsHTML = ''; // Creamos un string para almacenar todo el HTML
+            let allProductsHTML = ''; 
 
             results.data.forEach(product => {
                 if (product && product.Title && product.Title.trim() !== '') {
                     
-                    const imageUrl = product['Image URL'];
+                    // --- Lógica para la imagen ---
+                    const imageUrlString = product['Image URL']; // Obtenemos el texto completo: "url1|url2|..."
                     let imageHTML = '';
-                    if (imageUrl && imageUrl.trim() !== '') {
-                        imageHTML = `<img src="${imageUrl}" alt="${product.Title}" class="product-image">`;
+                    
+                    if (imageUrlString && imageUrlString.trim() !== '') {
+                        // 👇 ¡AQUÍ ESTÁ LA MAGIA! 👇
+                        // 1. Dividimos el texto por el "|" para crear una lista de URLs.
+                        // 2. Tomamos solo el primer elemento de la lista con [0].
+                        const firstImageUrl = imageUrlString.split('|')[0];
+                        
+                        // 3. Usamos esa primera URL para la etiqueta de la imagen.
+                        imageHTML = `<img src="${firstImageUrl}" alt="${product.Title}" class="product-image">`;
                     }
 
                     const regularPrice = parseFloat(product['Regular Price']);
@@ -48,19 +55,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             });
 
-            // Ocultamos el loader y añadimos todo el HTML al contenedor
             loader.style.display = 'none';
             listContainer.innerHTML = allProductsHTML;
 
-            // INICIALIZACIÓN DE LIST.JS
             const options = {
                 valueNames: ['product-name', 'product-id']
             };
-
             const productList = new List('catalogo-completo', options);
         },
         error: function(err) {
-            // Asegurarse de que el loader exista antes de modificarlo
             if (loader) {
                 loader.innerHTML = `<div style="color: red; text-align: center;">Error al cargar el catálogo.</div>`;
             }
@@ -76,4 +79,3 @@ function formatoMoneda(numero) {
         currency: 'MXN' 
     });
 }
-
