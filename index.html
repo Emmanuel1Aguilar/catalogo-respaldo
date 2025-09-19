@@ -10,14 +10,37 @@
             background-color: #000; 
             margin: 0; 
             padding: 20px; 
+            color: #fff;
         }
-        #catalogo-container { 
+        /* --- Estructura para List.js --- */
+        #catalogo-completo {
+            max-width: 1200px;
+            margin: auto;
+        }
+        .search-container {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .search {
+            width: 100%;
+            max-width: 500px;
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 25px;
+            border: 2px solid #C9B053;
+            background-color: #222;
+            color: #fff;
+        }
+        .search::placeholder {
+            color: #888;
+        }
+        .list { 
             display: grid; 
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
             gap: 20px; 
-            max-width: 1200px; 
-            margin: auto; 
         }
+        /* --- Estilos de la tarjeta de producto --- */
         .product-card { 
             background-color: #fff; 
             border: 1px solid #ddd; 
@@ -25,21 +48,26 @@
             padding: 15px; 
             box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
             display: flex; 
-            flex-direction: column; 
+            flex-direction: column;
+            color: #333;
         }
-        /* --- ESTILOS PARA LA IMAGEN --- */
         .product-image {
             width: 100%;
-            height: 250px; /* Altura fija para todas las imágenes */
-            object-fit: cover; /* Asegura que la imagen cubra el espacio sin deformarse */
+            height: 250px;
+            object-fit: cover;
             border-radius: 5px;
             margin-bottom: 15px;
-            background-color: #eee; /* Color de fondo mientras carga la imagen */
+            background-color: #eee;
         }
         .product-card h3 { 
             font-size: 1.2em; 
-            margin: 0 0 10px 0; 
+            margin: 0 0 5px 0; 
             color: #333; 
+        }
+        .product-id {
+            font-size: 0.8em;
+            color: #888;
+            margin-bottom: 10px;
         }
         .product-card .price { 
             font-size: 1.3em; 
@@ -67,43 +95,29 @@
         .loader { 
             text-align: center; 
             font-size: 1.5em; 
-            color: #555; 
-        }
-        #load-more-btn {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            font-size: 16px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        #load-more-btn:hover {
-            background-color: #0056b3;
-        }
-        #load-more-btn:disabled {
-            background-color: #ccc;
-            cursor: not-allowed;
+            color: #fff; 
         }
     </style>
 </head>
 <body>
 
-    <h1 style="text-align: center; color:#fff;">Catálogo Don Quick Dispensario</h1>
+    <h1 style="text-align: center;">Catálogo Don Quick Dispensario</h1>
 
-    <div id="catalogo-container">
+    <div id="catalogo-completo">
+        
+        <div class="search-container">
+            <input class="search" type="text" placeholder="Buscar por nombre o ID..." />
+        </div>
+
+        <div class="list">
+            </div>
+
         <div class="loader">Cargando productos...</div>
     </div>
 
-    <div id="load-more-container" style="text-align: center; padding: 20px;"></div>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
-    
+    <script src="//cdnjs.cloudflare.com/ajax/libs/list.js/2.3.1/list.min.js"></script>
     <script src="script.js"></script>
 
 </body>
 </html>
-
-
-
